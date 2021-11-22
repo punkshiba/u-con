@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy
+
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  ipfs-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Pin to IPFS  
+        uses: anantaramdas/ipfs-pinata-deploy-action@39bbda1ce1fe24c69c6f57861b8038278d53688d
+        with:
+          pin-name: 'punks-u-con'
+          path: './public'
+          pinata-api-key: e2841d68ace418ccd532
+          pinata-secret-api-key: a5da8336d9c088218675d8a4164b0a564446dd72ff9ae46fd5f8f3dcd5c641f1
+          verbose: true             
